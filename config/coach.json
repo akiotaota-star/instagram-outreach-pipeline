@@ -1,0 +1,74 @@
+{
+  "id": "coaches",
+  "name": "Coaches – persönlicher Erstkontakt",
+  "niche": "coaches",
+  "language": "de",
+  "languages": [
+    "de",
+    "en"
+  ],
+  "include_keywords": [
+    "coach",
+    "coaching",
+    "trainer",
+    "personal training",
+    "fitness"
+  ],
+  "exclude_keywords": [
+    "fanpage",
+    "parody"
+  ],
+  "min_followers": 0,
+  "max_followers": 10000000000,
+  "min_score": 35,
+  "max_chars": 420,
+  "max_words": 75,
+  "tone": "casual",
+  "sender": {
+    "name": "",
+    "role": "",
+    "context": "Vor Nutzung durch eigene, wahre Angaben ergänzen."
+  },
+  "offerings": [],
+  "hook_rules": [
+    {
+      "keywords": [
+        "coach",
+        "coaching",
+        "trainer",
+        "personal training"
+      ],
+      "questions": {
+        "de": [
+          "Was macht dir an deiner Arbeit gerade am meisten Spaß?",
+          "Wie bist du zum Coaching gekommen?",
+          "Welches Thema ist dir in deiner Arbeit gerade besonders wichtig?"
+        ],
+        "en": [
+          "What do you enjoy most about your work at the moment?",
+          "How did you get into coaching?",
+          "Which topic matters most to you in your work right now?"
+        ]
+      }
+    },
+    {
+      "keywords": [
+        "fitness",
+        "training",
+        "strength"
+      ],
+      "questions": {
+        "de": [
+          "Was macht dir am Training gerade am meisten Spaß?",
+          "Wie bist du zu dieser Art von Training gekommen?",
+          "Welches Trainingsthema beschäftigt dich gerade am meisten?"
+        ],
+        "en": [
+          "What do you enjoy most about training at the moment?",
+          "How did you get into that type of training?",
+          "Which training topic interests you most right now?"
+        ]
+      }
+    }
+  ]
+}

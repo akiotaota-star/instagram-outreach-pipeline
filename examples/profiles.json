@@ -1,0 +1,57 @@
+[
+  {
+    "username": "demo_mira_coach",
+    "fullName": "Mira Beispiel",
+    "biography": "Strength coaching für Menschen mit wenig Zeit | Training mit Freude",
+    "followersCount": 3200,
+    "isPrivate": false,
+    "externalUrl": "https://example.com/mira",
+    "language": "de",
+    "latestPosts": [
+      {
+        "caption": "Heute geht es um Krafttraining mit einfachen Routinen.",
+        "url": "https://www.instagram.com/p/DEMO_MIRA/"
+      }
+    ]
+  },
+  {
+    "username": "demo_alex_strength",
+    "fullName": "Alex Example",
+    "biography": "Strength coach helping beginners enjoy training",
+    "followersCount": 4800,
+    "isPrivate": false,
+    "language": "en",
+    "latestPosts": [
+      {
+        "caption": "A simple approach to a first strength session",
+        "url": "https://www.instagram.com/p/DEMO_ALEX/"
+      }
+    ]
+  },
+  {
+    "username": "demo_atelier",
+    "fullName": "Atelier Beispiel",
+    "biography": "Fotografie in Hamburg | Portraits mit natürlichem Licht",
+    "followersCount": 1700,
+    "isPrivate": false,
+    "language": "de",
+    "latestPosts": []
+  },
+  {
+    "username": "demo_private",
+    "fullName": "Private Example",
+    "biography": "Fitness coaching",
+    "followersCount": 1500,
+    "isPrivate": true,
+    "language": "de",
+    "latestPosts": []
+  },
+  {
+    "username": "demo_sparse",
+    "fullName": "",
+    "biography": "",
+    "isPrivate": false,
+    "language": "de",
+    "latestPosts": []
+  }
+]

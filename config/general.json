@@ -1,0 +1,25 @@
+{
+  "id": "general",
+  "name": "Allgemein – belegte Interessen",
+  "niche": "general",
+  "language": "de",
+  "languages": [],
+  "include_keywords": [],
+  "exclude_keywords": [
+    "fanpage",
+    "parody"
+  ],
+  "min_followers": 0,
+  "max_followers": 10000000000,
+  "min_score": 35,
+  "max_chars": 420,
+  "max_words": 75,
+  "tone": "friendly",
+  "sender": {
+    "name": "",
+    "role": "",
+    "context": "Vor Nutzung durch eigene, wahre Angaben ergänzen."
+  },
+  "offerings": [],
+  "hook_rules": []
+}

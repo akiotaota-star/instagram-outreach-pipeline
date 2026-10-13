@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Outreach Studio</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script defer src="/app.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Outreach Studio Start"
+        ><span class="mark" aria-hidden="true">o.</span>outreach<span
+          class="brand-sub"
+          >studio</span
+        ></a
+      >
+      <div class="top-context">
+        <span class="dot"></span> Persönlicher Arbeitsbereich
+      </div>
+      <button id="logout" class="quiet" hidden>Trennen</button>
+    </header>
+    <noscript
+      ><p class="notice">
+        Für die Arbeitsoberfläche bitte JavaScript aktivieren. Alternativ steht
+        die Kommandozeile zur Verfügung.
+      </p></noscript
+    >
+    <main>
+      <section id="login" class="login">
+        <div class="eyebrow">Gute Gespräche beginnen konkret.</div>
+        <h1>Der erste Satz.<br />Mit echtem Bezug.</h1>
+        <p>
+          Profile verstehen, passende Einstiege vorbereiten und jeden Kontakt im
+          Blick behalten.
+        </p>
+        <form id="login-form" method="post">
+          <label for="token">Zugangsschlüssel aus deinem Terminal</label>
+          <div class="input-action">
+            <input
+              id="token"
+              type="password"
+              autocomplete="off"
+              required
+              minlength="32"
+            /><button class="primary" type="submit">
+              Verbinden <span aria-hidden="true">↗</span>
+            </button>
+          </div>
+        </form>
+        <p class="small">
+          Dein Schlüssel bleibt nur in dieser Sitzung. Der Erstversand findet in
+          Instagram statt.
+        </p>
+      </section>
+      <div id="workspace" hidden>
+        <div class="heading-row">
+          <div>
+            <div class="eyebrow" id="campaign-label">Kampagne</div>
+            <h1>Deine nächsten Gespräche.</h1>
+            <p class="muted">
+              Ein echter Profilbezug. Eine offene Frage. Ein klarer nächster
+              Schritt.
+            </p>
+          </div>
+          <div class="heading-actions">
+            <button id="open-agent" class="secondary">Agent einrichten</button
+            ><button id="open-import" class="primary">
+              Profile importieren <span aria-hidden="true">+</span>
+            </button>
+          </div>
+        </div>
+        <p id="setup-note" class="setup-note" hidden>
+          Richte zuerst deinen Agenten ein: Absender, Angebot, Zielkunden und
+          Gesprächsstil.
+        </p>
+        <section class="metric-strip" aria-label="Fortschritt">
+          <div><span id="m-total">0</span><small>Profile</small></div>
+          <div><span id="m-review">0</span><small>Zur Prüfung</small></div>
+          <div><span id="m-approved">0</span><small>Freigegeben</small></div>
+          <div><span id="m-sent">0</span><small>Kontaktiert</small></div>
+          <div><span id="m-replied">0</span><small>Geantwortet</small></div>
+        </section>
+        <div class="toolbar">
+          <div class="filters">
+            <label class="sr-only" for="search">Profile durchsuchen</label
+            ><input id="search" placeholder="Name oder Profil suchen" /><label
+              class="sr-only"
+              for="status-filter"
+              >Status</label
+            ><select id="status-filter">
+              <option value="all">Alle Status</option>
+              <option value="pending">Neu</option>
+              <option value="review">Zur Prüfung</option>
+              <option value="approved">Freigegeben</option>
+              <option value="sent">Kontaktiert</option>
+              <option value="replied">Geantwortet</option>
+              <option value="suppressed">Gesperrt</option>
+            </select>
+          </div>
+          <div class="actions">
+            <label class="sr-only" for="provider">Textmodus</label
+            ><select id="provider">
+              <option value="template">Vorlagen · offline</option></select
+            ><button id="generate" class="secondary">
+              Einstiege vorbereiten</button
+            ><button id="export" class="quiet">CSV exportieren</button>
+          </div>
+        </div>
+        <div id="job-note" class="small job-note" role="status"></div>
+        <div class="workbench">
+          <section class="profile-list" aria-label="Profile nach Passung">
+            <div class="list-label">
+              <span>PROFIL</span><span>PASSUNG</span>
+            </div>
+            <div id="profiles"></div>
+          </section>
+          <section id="detail" class="detail" aria-label="Profil prüfen">
+            <div class="empty">
+              <span class="empty-symbol" aria-hidden="true">↗</span>
+              <h2>Deine Pipeline beginnt hier.</h2>
+              <p>
+                Importiere einen JSON-Export oder ein vorhandenes Apify-Dataset.
+                Danach werden Profile anhand deiner Kampagne priorisiert.
+              </p>
+              <button id="empty-import" class="secondary">
+                Erste Profile importieren
+              </button>
+            </div>
+          </section>
+        </div>
+        <footer class="workspace-foot">
+          Beobachtung vor Annahme. Gespräch vor Angebot.
+          <span>Freigeben sendet keine Nachricht.</span>
+        </footer>
+      </div>
+    </main>
+    <dialog id="import-dialog">
+      <form id="import-form" method="post">
+        <div class="dialog-head">
+          <h2>Profile importieren</h2>
+          <button
+            type="button"
+            id="close-import"
+            class="quiet"
+            aria-label="Schließen"
+          >
+            ×
+          </button>
+        </div>
+        <p class="muted">
+          Apify-Profilfelder werden automatisch zugeordnet. Bereits bekannte
+          Kontakte bleiben erhalten.
+        </p>
+        <label for="import-file">JSON-Datei auswählen</label
+        ><input
+          id="import-file"
+          type="file"
+          accept=".json,application/json"
+        /><label for="import-json">Oder Profile als JSON-Liste einfügen</label
+        ><textarea
+          id="import-json"
+          rows="7"
+          placeholder='[{"username":"profilname","biography":"Öffentliche Profilbeschreibung"}]'
+        ></textarea
+        ><button class="primary" type="submit">JSON importieren</button>
+        <div class="divider">Vorhandenes Apify-Dataset</div>
+        <label for="dataset-id">Dataset-ID</label
+        ><input
+          id="dataset-id"
+          placeholder="Dataset-ID aus der Apify Console"
+        />
+        <div class="input-action">
+          <div>
+            <label for="dataset-limit">Maximale Profile</label
+            ><input
+              id="dataset-limit"
+              type="number"
+              min="1"
+              max="1000"
+              value="100"
+            />
+          </div>
+          <button id="apify-import" class="secondary" type="button">
+            Dataset laden
+          </button>
+        </div>
+        <p class="small">
+          Liest ein bestehendes Dataset. Startet keinen kostenpflichtigen
+          Actor-Lauf. APIFY_TOKEN wird nur auf dem Server konfiguriert.
+        </p>
+      </form>
+    </dialog>
+    <dialog id="agent-dialog">
+      <form id="agent-form" method="post">
+        <div class="dialog-head">
+          <h2>Dein Agent. Dein Angebot.</h2>
+          <button
+            type="button"
+            id="close-agent"
+            class="quiet"
+            aria-label="Einrichtung schließen"
+          >
+            ×
+          </button>
+        </div>
+        <p class="muted">
+          Diese Angaben gelten nur für diese Installation. Sie bestimmen Auswahl
+          und Textbriefing für deinen Agenten.
+        </p>
+        <label for="agent-name">Name deines Agenten</label
+        ><input
+          id="agent-name"
+          required
+          maxlength="120"
+          placeholder="Zum Beispiel: Studio Nord Outreach"
+        />
+        <div class="form-grid">
+          <div>
+            <label for="sender-name">Dein Name</label
+            ><input id="sender-name" required maxlength="200" />
+          </div>
+          <div>
+            <label for="sender-role">Deine Rolle</label
+            ><input
+              id="sender-role"
+              required
+              maxlength="200"
+              placeholder="Zum Beispiel: Videograf"
+            />
+          </div>
+        </div>
+        <label for="sender-context">Warum möchtest du Kontakt aufnehmen?</label
+        ><input
+          id="sender-context"
+          required
+          maxlength="200"
+          placeholder="Ehrliche Absicht, ohne vorgetäuschtes Kaufinteresse"
+        /><label for="offer">Dein Angebot und sein Nutzen</label
+        ><textarea
+          id="offer"
+          rows="3"
+          required
+          maxlength="4000"
+          placeholder="Eine Leistung pro Zeile. Was bietest du wem an und welche Veränderung ermöglicht es?"
+        ></textarea
+        ><label for="niche">Zielgruppe / Nische</label
+        ><input
+          id="niche"
+          required
+          maxlength="80"
+          placeholder="Zum Beispiel: selbstständige Fotografen"
+        /><label for="keywords"
+          >Passende Profilbegriffe, durch Kommas getrennt</label
+        ><input
+          id="keywords"
+          placeholder="fotograf, fotografie, photographer"
+        /><label for="exclusions">Ausschließen bei diesen Begriffen</label
+        ><input id="exclusions" placeholder="fanpage, parody" />
+        <div class="form-grid">
+          <div>
+            <label for="agent-language">Standardsprache</label
+            ><select id="agent-language">
+              <option value="de">Deutsch</option>
+              <option value="en">English</option>
+            </select>
+          </div>
+          <div>
+            <label for="agent-tone">Ton</label
+            ><select id="agent-tone">
+              <option value="friendly">Freundlich</option>
+              <option value="casual">Locker</option>
+              <option value="professional">Professionell</option>
+            </select>
+          </div>
+        </div>
+        <p class="small">
+          Eine bekannte Profilsprache hat Vorrang. Ohne Sprachangabe gilt deine
+          Standardsprache.
+        </p>
+        <label for="questions"
+          >Drei passende offene Einstiegsfragen (optional)</label
+        ><textarea
+          id="questions"
+          rows="4"
+          placeholder="Eine Frage pro Zeile, jeweils mit Fragezeichen. Zum Beispiel: Wie bist du zur Fotografie gekommen?"
+        ></textarea>
+        <p class="small">
+          Eigene Fragen greifen bei einem passenden Profilbegriff. Ohne eigene
+          Fragen nutzt der Vorlagenmodus allgemeine Einstiege. Die KI erhält
+          dein vollständiges Briefing.
+        </p>
+        <p class="small">
+          Änderungen verwerfen offene Entwürfe und Freigaben. Bereits
+          kontaktierte und gesperrte Personen bleiben geschützt.
+        </p>
+        <button type="submit" class="primary">Agent speichern</button>
+      </form>
+    </dialog>
+    <div id="toast" role="status" aria-live="polite" hidden></div>
+  </body>
+</html>

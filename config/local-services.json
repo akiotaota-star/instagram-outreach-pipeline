@@ -1,0 +1,76 @@
+{
+  "id": "local-services",
+  "name": "Lokale Dienstleistungen – persönlicher Erstkontakt",
+  "niche": "local_services",
+  "language": "de",
+  "languages": [
+    "de",
+    "en"
+  ],
+  "include_keywords": [
+    "studio",
+    "salon",
+    "friseur",
+    "barber",
+    "fotografie",
+    "photography",
+    "handwerk",
+    "café",
+    "cafe"
+  ],
+  "exclude_keywords": [
+    "fanpage",
+    "parody"
+  ],
+  "min_followers": 0,
+  "max_followers": 10000000000,
+  "min_score": 35,
+  "max_chars": 420,
+  "max_words": 75,
+  "tone": "friendly",
+  "sender": {
+    "name": "",
+    "role": "",
+    "context": "Vor Nutzung durch eigene, wahre Angaben ergänzen."
+  },
+  "offerings": [],
+  "hook_rules": [
+    {
+      "keywords": [
+        "salon",
+        "friseur",
+        "barber"
+      ],
+      "questions": {
+        "de": [
+          "Was macht dir an deiner Arbeit im Salon gerade am meisten Spaß?",
+          "Wie bist du zu diesem Handwerk gekommen?",
+          "Welche Richtung in deinem Handwerk interessiert dich gerade besonders?"
+        ],
+        "en": [
+          "What do you enjoy most about your salon work at the moment?",
+          "How did you get into that craft?",
+          "Which direction in your craft interests you most right now?"
+        ]
+      }
+    },
+    {
+      "keywords": [
+        "fotografie",
+        "photography"
+      ],
+      "questions": {
+        "de": [
+          "Was fotografierst du gerade am liebsten?",
+          "Wie bist du zur Fotografie gekommen?",
+          "Welche Richtung in der Fotografie reizt dich gerade besonders?"
+        ],
+        "en": [
+          "What do you most enjoy photographing at the moment?",
+          "How did you get into photography?",
+          "Which direction in photography interests you most right now?"
+        ]
+      }
+    }
+  ]
+}
